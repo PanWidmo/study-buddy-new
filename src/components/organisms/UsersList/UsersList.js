@@ -13,9 +13,11 @@ class UsersList extends React.Component {
   };
 
   render() {
+    const { title } = this.props;
+
     return (
       <Wrapper>
-        <h1>{this.state.isUsersList ? `User's list` : `Student's list`}</h1>
+        <h1>{title}</h1>
         <button onClick={this.toggleListTitle}>Change title</button>
         <StyledList>
           {users.map((userData, i) => (
