@@ -5,11 +5,12 @@ import { Wrapper, StyledList } from './UsersList.styles';
 
 class UsersList extends React.Component {
   state = {
-    isUsersList: true,
+    users,
   };
 
-  toggleListTitle = () => {
-    this.setState((prevState) => ({ isUsersList: !prevState.isUsersList }));
+  deleteUser = (name) => {
+    const filteredUsers = this.state.users.filter((user) => user.name !== name);
+    this.setState({ users: filteredUsers });
   };
 
   render() {
@@ -20,8 +21,8 @@ class UsersList extends React.Component {
         <h1>{title}</h1>
         <button onClick={this.toggleListTitle}>Change title</button>
         <StyledList>
-          {users.map((userData, i) => (
-            <UsersListItem index={i} key={userData.name} userData={userData} />
+          {this.state.users.map((userData, i) => (
+            <UsersListItem key={userData.name} userData={userData} deleteUser={this.deleteUser} />
           ))}
         </StyledList>
       </Wrapper>

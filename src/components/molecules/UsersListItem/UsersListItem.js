@@ -3,16 +3,14 @@ import PropTypes from 'prop-types';
 import Button from '../../atoms/Button/Button';
 import { Wrapper, StyledAvarage, StyledNameAndAttendance } from './UsersListItem.styles';
 
-const UsersListItem = ({ index, userData: { average, name, attendance = '0%' } }) => {
-  const showIndex = (index) => alert(`This is student #${index + 1}`);
-
+const UsersListItem = ({ deleteUser, userData: { average, name, attendance = '0%' } }) => {
   return (
     <Wrapper>
       <StyledAvarage value={average}>{average}</StyledAvarage>
       <StyledNameAndAttendance>
         <p>
           {name}
-          <Button onClick={() => showIndex(index)} />
+          <Button onClick={() => deleteUser(name)} />
         </p>
         <p>attendance: {attendance}</p>
       </StyledNameAndAttendance>
