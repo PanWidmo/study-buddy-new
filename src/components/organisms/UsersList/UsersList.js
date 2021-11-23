@@ -16,15 +16,22 @@ const mockAPI = (success) => {
 };
 
 const UsersList = () => {
-  const [users, setUsers] = useState(usersData);
+  const [users, setUsers] = useState([]);
   const [isLoading, setLoadingState] = useState([]);
 
-  // mockAPI()
-  //   .then((data) => {
-  //     this.setState({ isLoading: false });
-  //     this.setState({ users: data });
-  //   })
-  //   .catch((err) => console.log(err));
+  useEffect(() => {
+    setLoadingState(true);
+    mockAPI()
+      .then((data) => {
+        setLoadingState(false);
+        setUsers(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    console.log('Loading state has changed!');
+  }, [isLoading]);
 
   const deleteUser = (name) => {
     const filteredUsers = users.filter((user) => user.name !== name);
@@ -33,7 +40,7 @@ const UsersList = () => {
 
   return (
     <Wrapper>
-      {/* <h1>{isLoading ? 'Loading...' : 'Users List'}</h1> */}
+      <h1>{isLoading ? 'Loading...' : 'Users List'}</h1>
       <StyledList>
         {users.map((userData, i) => (
           <UsersListItem key={userData.name} userData={userData} deleteUser={deleteUser} />
