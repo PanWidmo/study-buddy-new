@@ -31,7 +31,11 @@ class UsersList extends React.Component {
       .catch((err) => console.log(err));
   }
 
-  componentDidUpdate() {}
+  componentDidUpdate(_, prevState) {
+    if (prevState.isLoading !== this.state.isLoading) {
+      console.log('Loading state has changed!');
+    }
+  }
 
   componenetDidUnmount() {}
 
