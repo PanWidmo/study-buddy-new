@@ -3,23 +3,42 @@ import { users } from 'data/users.js';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
 import { Wrapper, StyledList } from './UsersList.styles';
 
+const mockAPI = (success) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (users) {
+        resolve([...users]);
+      } else {
+        reject({ message: 'Error' });
+      }
+    }, 2000);
+  });
+};
+
 class UsersList extends React.Component {
   state = {
-    users,
+    users: [],
+    isLoading: false,
   };
 
-  deleteUser = (name) => {
-    const filteredUsers = this.state.users.filter((user) => user.name !== name);
-    this.setState({ users: filteredUsers });
-  };
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    mockAPI()
+      .then((data) => {
+        this.setState({ isLoading: false });
+        this.setState({ users: data });
+      })
+      .catch((err) => console.log(err));
+  }
+
+  componentDidUpdate() {}
+
+  componenetDidUnmount() {}
 
   render() {
-    const { title } = this.props;
-
     return (
       <Wrapper>
-        <h1>{title}</h1>
-        <button onClick={this.toggleListTitle}>Change title</button>
+        <h1>{this.state.isLoading ? 'Loading...' : 'Users List'}</h1>
         <StyledList>
           {this.state.users.map((userData, i) => (
             <UsersListItem key={userData.name} userData={userData} deleteUser={this.deleteUser} />
