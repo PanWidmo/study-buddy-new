@@ -5,40 +5,42 @@ import { Wrapper, StyledList } from './UsersList.styles';
 import FormField from 'components/molecules/FormField/FormField';
 import { AddButton } from 'components/atoms/AddButton/AddButton';
 
-const mockAPI = (success) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (usersData) {
-        resolve([...usersData]);
-      } else {
-        reject({ message: 'Error' });
-      }
-    }, 2000);
-  });
+const initialFormState = {
+  name: '',
+  attendance: '',
+  average: '',
 };
 
+// const mockAPI = (success) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       if (usersData) {
+//         resolve([...usersData]);
+//       } else {
+//         reject({ message: 'Error' });
+//       }
+//     }, 0);
+//   });
+// };
+
 const UsersList = () => {
-  const [users, setUsers] = useState([]);
-  const [isLoading, setLoadingState] = useState([]);
-  const [formValues, setFormValues] = useState({
-    name: '',
-    attendance: '',
-    average: '',
-  });
+  const [users, setUsers] = useState(usersData);
+  // const [isLoading, setLoadingState] = useState([]);
+  const [formValues, setFormValues] = useState(initialFormState);
 
-  useEffect(() => {
-    setLoadingState(true);
-    mockAPI()
-      .then((data) => {
-        setLoadingState(false);
-        setUsers(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   setLoadingState(true);
+  //   mockAPI()
+  //     .then((data) => {
+  //       setLoadingState(false);
+  //       setUsers(data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
 
-  useEffect(() => {
-    console.log('Loading state has changed!');
-  }, [isLoading]);
+  // useEffect(() => {
+  //   console.log('Loading state has changed!');
+  // }, [isLoading]);
 
   const deleteUser = (name) => {
     const filteredUsers = users.filter((user) => user.name !== name);
@@ -46,24 +48,36 @@ const UsersList = () => {
   };
 
   const handleInputChange = (event) => {
-    console.log(formValues);
     setFormValues({
       ...formValues,
       [event.target.name]: event.target.value,
     });
   };
 
+  const handleAddUser = (event) => {
+    event.preventDefault();
+    const newUser = {
+      name: formValues.name,
+      attendance: formValues.attendance,
+      average: formValues.average,
+    };
+
+    setUsers([newUser, ...users]);
+
+    setFormValues(initialFormState);
+  };
+
   return (
     <>
-      <Wrapper>
+      <Wrapper as="form" onSubmit={handleAddUser}>
         <h1>Add new student</h1>
         <FormField label="Name" id="name" name="name" value={formValues.name} onChange={handleInputChange} />
         <FormField label="Attendance" id="attendance" name="attendance" value={formValues.attendance} onChange={handleInputChange} />
         <FormField label="Average" id="average" name="average" value={formValues.average} onChange={handleInputChange} />
-        <AddButton>Add</AddButton>
+        <AddButton type="submit">Add</AddButton>
       </Wrapper>
       <Wrapper>
-        <h1>{isLoading ? 'Loading...' : 'Users List'}</h1>
+        <h1>Users List</h1>
         <StyledList>
           {users.map((userData, i) => (
             <UsersListItem key={userData.name} userData={userData} deleteUser={deleteUser} />
