@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Input = styled.div`
+export const Input = styled.input`
   padding: 10px 80px;
   border: 1px solid ${({ theme }) => theme.colors.darkPurple};
   box-sizing: border-box;
