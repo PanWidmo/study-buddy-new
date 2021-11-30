@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const Wrapper = styled.nav`
   width: 100%;
@@ -7,7 +7,7 @@ export const Wrapper = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border-right: 1px solid ${({ theme }) => theme.colors.darkPurple};
+  border-right: 2px solid ${({ theme }) => theme.colors.darkPurple};
 `;
 
 export const Logo = styled.div`
@@ -22,10 +22,30 @@ export const Logo = styled.div`
   }
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(NavLink).attrs({ end: 'end' })`
   text-align: right;
   color: ${({ theme }) => theme.colors.darkGrey};
   text-decoration: none;
   font-weight: bold;
   margin: 15px 30px 15px auto;
+  position: relative;
+
+  &.active {
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &::after {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -30px;
+    background-color: ${({ theme }) => theme.colors.darkPurple};
+  }
 `;
