@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 const InputWithButton = () => {
   const [inputValue, setInputValue] = useState('');
@@ -18,5 +19,15 @@ describe('Input With Button', () => {
   it('Renders the component', () => {
     render(<InputWithButton />);
     screen.getByText('Submit');
+  });
+
+  it('Properly handles value change', () => {
+    render(<InputWithButton />);
+    const input = screen.getByPlaceholderText('Enter your name');
+    const button = screen.getByText('Submit');
+    expect(button).toBeDisabled();
+    fireEvent.change(input, { target: { value: 'Jan' } });
+    expect(input).toHaveValue('Jan');
+    expect(button).not.toBeDisabled();
   });
 });
