@@ -1,33 +1,11 @@
-import React, { useState } from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import React from 'react';
+import { screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-
-const InputWithButton = () => {
-  const [inputValue, setInputValue] = useState('');
-
-  const handleInputChange = (e) => setInputValue(e.target.value);
-
-  return (
-    <>
-      <input value={inputValue} onChange={handleInputChange} name="Name" id="name" placeholder="Enter your name" />
-      <button disabled={!inputValue}>Submit</button>
-    </>
-  );
-};
+import FormField from 'components/molecules/FormField/FormField';
+import { renderWithThemeProvider } from 'helpers/renderWithThemeProvider';
 
 describe('Input With Button', () => {
   it('Renders the component', () => {
-    render(<InputWithButton />);
-    screen.getByText('Submit');
-  });
-
-  it('Properly handles value change', () => {
-    render(<InputWithButton />);
-    const input = screen.getByPlaceholderText('Enter your name');
-    const button = screen.getByText('Submit');
-    expect(button).toBeDisabled();
-    fireEvent.change(input, { target: { value: 'Jan' } });
-    expect(input).toHaveValue('Jan');
-    expect(button).not.toBeDisabled();
+    renderWithThemeProvider(<FormField label="name" name="name" id="name" />);
   });
 });
