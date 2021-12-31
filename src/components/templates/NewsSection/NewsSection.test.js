@@ -2,9 +2,8 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
-import { query } from './NewsSection';
+import NewsSection, { query } from './NewsSection';
 import { renderWithProviders } from 'helpers/renderWithProviders';
-import NewsSection from './NewsSection';
 
 const mock = new MockAdapter(axios);
 
