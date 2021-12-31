@@ -54,6 +54,10 @@
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^7.0.4",
     "lint-staged": "^11.2.6",
+    "msw": "^0.36.3",
     "prettier": "^2.4.1"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
