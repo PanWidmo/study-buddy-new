@@ -5,12 +5,12 @@ import { Title } from 'components/atoms/Title/Title';
 import PropTypes from 'prop-types';
 import { UserShape } from 'types';
 
-const UsersList = ({ users }) => {
+const UsersList = ({ users = [] }) => {
   return (
     <>
       <Title>Students List</Title>
       <StyledList>
-        {users.map((userData, i) => (
+        {users.map((userData) => (
           <UsersListItem key={userData.name} userData={userData} />
         ))}
       </StyledList>
