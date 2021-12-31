@@ -49,7 +49,7 @@ export const ContentWrapper = styled.div`
 
   img {
     max-width: 200px;
-    object-fit: conver;
+    object-fit: cover;
     margin-left: 15px;
   }
 `;
