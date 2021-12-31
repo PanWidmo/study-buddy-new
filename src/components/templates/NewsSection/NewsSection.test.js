@@ -1,8 +1,31 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import MockAdapter from 'axios-mock-adapter';
+import axios from 'axios';
+import { query } from './NewsSection';
+import { renderWithProviders } from 'helpers/renderWithProviders';
+import NewsSection from './NewsSection';
+
+const mock = new MockAdapter(axios);
 
 describe('News Section', () => {
-  it('Render articles', () => {
-    console.log('Test');
+  afterEach(() => {
+    mock.reset();
+  });
+
+  it('Displays error when articles are not loaded correctly', async () => {
+    mock.onPost('https://graphql.datocms.com/', { query }).reply(500);
+    renderWithProviders(<NewsSection />);
+    await screen.findByText(/Sorry/);
+  });
+
+  it('Displays articles', async () => {
+    mock.onPost('https://graphql.datocms.com/', { query }).reply(200, {
+      data: {
+        allArticles: [{ id: 1, title: 'Test', category: 'Test', content: 'Test' }],
+      },
+    });
+    renderWithProviders(<NewsSection />);
+    await screen.findAllByText(/Test/);
   });
 });
