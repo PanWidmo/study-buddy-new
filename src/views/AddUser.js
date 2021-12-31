@@ -2,7 +2,7 @@ import React, { useContext, useRef } from 'react';
 import { Title } from 'components/atoms/Title/Title';
 import FormField from 'components/molecules/FormField/FormField';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
-import { AddButton } from 'components/atoms/AddButton/AddButton';
+import { Button } from 'components/atoms/Button/Button';
 import { UsersContext } from 'providers/UsersProvider';
 import { useForm } from 'hooks/useForm';
 import { useEffect } from 'react/cjs/react.development';
@@ -43,7 +43,7 @@ const AddUser = () => {
       <FormField label="Attendance" id="attendance" name="attendance" value={formValues.attendance} onChange={handleInputChange} />
       <FormField label="Average" id="average" name="average" value={formValues.average} onChange={handleInputChange} />
       <FormField label="Consent" id="consent" name="consent" type="checkbox" value={formValues.consent} onChange={handleToggleConsent} />
-      <AddButton type="submit">Add</AddButton>
+      <Button type="submit">Add</Button>
       {formValues.error ? <p>{formValues.error}</p> : null}
     </ViewWrapper>
   );

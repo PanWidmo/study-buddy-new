@@ -8,17 +8,21 @@ export const Wrapper = styled.nav`
   flex-direction: column;
   align-items: flex-start;
   border-right: 2px solid ${({ theme }) => theme.colors.darkPurple};
+  grid-row: 1/3;
+  grid-column: 1/1;
+  padding: 22px 0;
 `;
 
 export const Logo = styled.div`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.darkGrey};
-  padding: 0px 10px 0px 60px;
+  padding: 0px 10px 0px 0px;
   margin-bottom: 40px;
 
   h1 {
     text-align: right;
     color: ${({ theme }) => theme.colors.white};
+    font-size: ${({ theme }) => theme.fontSize.l};
   }
 `;
 
