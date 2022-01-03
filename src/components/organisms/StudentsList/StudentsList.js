@@ -8,6 +8,7 @@ import { useStudents } from 'hooks/useStudents';
 const StudentsList = () => {
   const { id } = useParams();
   const { students } = useStudents({ group: id });
+
   return (
     <>
       <Title>Students List </Title>
