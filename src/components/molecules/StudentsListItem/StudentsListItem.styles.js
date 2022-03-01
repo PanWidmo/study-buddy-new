@@ -4,6 +4,7 @@ export const Wrapper = styled.li`
   display: flex;
   align-items: center;
   position: relative;
+  cursor: pointer;
 
   &:not(:last-child)::after {
     content: '';
@@ -13,25 +14,6 @@ export const Wrapper = styled.li`
     height: 1%;
     background-color: ${({ theme }) => theme.colors.grey};
   }
-`;
-
-export const StyledAvarage = styled.div`
-  background: ${({ theme, value }) => {
-    if (value > 4) return theme.colors.success;
-    if (value > 3) return theme.colors.warning;
-    if (value > 1) return theme.colors.error;
-    return theme.colors.grey;
-  }};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  border-radius: 50%;
-  font-size: ${({ theme }) => theme.fontSize.m};
-  color: ${({ theme }) => theme.colors.white};
-  font-weight: bold;
-  width: 35px;
-  height: 35px;
 `;
 
 export const StyledNameAndAttendance = styled.div`
