@@ -7,6 +7,7 @@ import { Title } from 'components/atoms/Title/Title';
 import useModal from 'hooks/useModal';
 import StudentDetails from 'components/molecules/StudentDetails/StudentDetails';
 import Modal from 'components/organisms/Modal/Modal';
+import axios from 'axios';
 
 const mockStudent = {
   id: '1',
@@ -43,6 +44,8 @@ const Dashboard = () => {
       const groups = await getGroups();
       setGroups(groups);
     })();
+
+    axios.get('/fruits').then((res) => console.log(res));
   }, [getGroups]);
 
   const handleOpenStudentDetails = async (id) => {
