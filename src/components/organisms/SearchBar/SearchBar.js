@@ -20,19 +20,19 @@ export const SearchBar = () => {
   });
 
   return (
-    <SearchBarWrapper {...getComboboxProps()}>
+    <SearchBarWrapper>
       <StatusInfo>
         <p>Logged as:</p>
         <p>
           <strong>Teacher</strong>
         </p>
       </StatusInfo>
-      <SearchWrapper>
+      <SearchWrapper {...getComboboxProps()}>
         <Input {...getInputProps()} name="Search" id="Search" placeholder="Search" />
         <SearchResults isVisible={isOpen && matchingStudents.length > 0} {...getMenuProps()} aria-label="results">
           {isOpen &&
             matchingStudents.map((item, index) => (
-              <SearchResultsItem isHighlited={highlightedIndex === index} {...getItemProps({ item, index })} key={item.id}>
+              <SearchResultsItem isHighlighted={highlightedIndex === index} {...getItemProps({ item, index })} key={item.id}>
                 {item.name}
               </SearchResultsItem>
             ))}
