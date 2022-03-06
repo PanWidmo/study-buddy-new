@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Average = styled.div`
-  width: 5px;
+  width: 35px;
   height: 35px;
   border-radius: 50px;
   display: flex;
