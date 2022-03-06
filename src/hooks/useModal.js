@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import Modal from 'components/organisms/Modal/Modal';
+import { useState } from 'react';
 
 const useModal = (initialState = false) => {
-  const [isOpen, setModalState] = React.useState(initialState);
+  const [isOpen, setModalState] = useState(initialState);
 
   const handleOpenModal = () => setModalState(true);
   const handleCloseModal = () => setModalState(false);
