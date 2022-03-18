@@ -33,6 +33,7 @@ export const StyledLink = styled(NavLink).attrs({ end: 'end' })`
   font-weight: bold;
   margin: 15px 30px 15px auto;
   position: relative;
+  cursor: pointer;
 
   &.active {
     &::after {
