@@ -56,7 +56,7 @@ const Root = () => {
 
   return (
     <>
-      {error ? <ErrorMessage /> : null}
+      {error ? <ErrorMessage message={error} /> : null}
       {auth.user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
     </>
   );
