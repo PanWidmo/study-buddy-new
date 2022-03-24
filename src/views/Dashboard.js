@@ -50,7 +50,7 @@ const Dashboard = () => {
           <StudentDetails student={currentStudent} />
         </Modal>
       </GroupWrapper>
-      <EventsProvider group="A">{(props) => <DisplayEvents events={props} />}</EventsProvider>
+      <EventsProvider group="A" render={(props) => <DisplayEvents events={props} />} />
     </Wrapper>
   );
 };
