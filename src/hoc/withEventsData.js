@@ -14,7 +14,7 @@ const withEventsData = (WrappedComponent, group) => {
 };
 
 //ten komponent w innym pliku
-const DisplayEvents = (props) => {
+export const DisplayEvents = (props) => {
   return (
     <div>
       Log events
