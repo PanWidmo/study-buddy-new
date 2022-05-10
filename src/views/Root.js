@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form';
 import { useAuth } from 'hooks/useAuth';
 import ErrorMessage from 'components/molecules/ErrorMessage/ErrorMessage';
 import { useError } from 'hooks/useError';
+import Notes from './Notes';
 
 const AuthenticatedApp = () => {
   return (
@@ -21,6 +22,7 @@ const AuthenticatedApp = () => {
           <Route path="/group" element={<Dashboard />} />
           <Route path="/group/:id" element={<Dashboard />} />
           <Route path="/add-user" element={<AddUser />} />
+          <Route path="/notes" element={<Notes />} />
         </Routes>
       </Wrapper>
     </MainTemplate>

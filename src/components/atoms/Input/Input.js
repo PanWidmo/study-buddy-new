@@ -6,7 +6,8 @@ export const Input = styled.input`
   font-size: ${({ theme }) => theme.fontSize.l};
   box-sizing: border-box;
   box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.09);
-  border-radius: 25px;
+  border-radius: ${({ isTextarea }) => (isTextarea ? '15px' : '25px')};
+  resize: none;
 
   &:focus {
     outline: none;
